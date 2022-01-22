@@ -1,0 +1,13 @@
+<br><br>
+<h1>Lists</h1>
+<ul>
+  <% @list.each do |list| %>
+   <li><%= link_to list.name,list_path(list) %></li>
+  <%end  %>
+</ul>
+
+<br><br>
+<%= simple_form_for (@new_list) do |f| %>
+  <%= f.input :name %>
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
