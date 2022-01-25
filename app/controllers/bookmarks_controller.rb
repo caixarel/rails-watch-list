@@ -7,6 +7,8 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
     if @bookmark.save
         redirect_to list_path(List.find(params[:list_id]))
+    else
+      render :new
     end
   end
   def destroy

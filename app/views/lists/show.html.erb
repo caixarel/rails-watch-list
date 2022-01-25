@@ -1,4 +1,5 @@
 <br><br><%= @list.name %> <br>
+<%= cl_image_tag @list.photo.key, height: 300, crop: :fill %>
 <ul>
 <% @list.bookmarks.each do |bookmark| %>
   <li><%= bookmark.comment %>

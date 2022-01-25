@@ -1,13 +1,31 @@
-<br><br>
-<h1>Lists</h1>
-<ul>
-  <% @list.each do |list| %>
-   <li><%= link_to list.name,list_path(list) %></li>
-  <%end  %>
-</ul>
+<div class='banner'style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('Jiangnan_Photography.jpeg')%>)">
+<p>Save you favorites movies <br>and watch them later</p></div>
+<div class= 'lists'>
+  <h1>My Lists</h1>
+  <ul>
+    <% @list.each do |list| %>
+
+      <%if list.photo.attached?  %>
+        <div class='list' style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')">
+          <li ><%= link_to list.name,list_path(list) %></li>
+
+      </div>
+    <%else  %>
+    <div class='list'>
+          <li><%= link_to list.name,list_path(list) %></li>
+      </div>
+
+    <%end %>
+    <%end  %>
+  </ul>
+
+</div>
+
+
 
 <br><br>
 <%= simple_form_for (@new_list) do |f| %>
   <%= f.input :name %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>
